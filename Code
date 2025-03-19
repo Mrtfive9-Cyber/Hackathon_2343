@@ -1,0 +1,37 @@
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='/', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptık')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Merhaba! Ben {bot.user}, bir Discord sohbet botuyum!')
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+
+@bot.command()
+async def start(ctx, start_vol = 3):
+    await ctx.send("collecting..." * start_vol)
+    await ctx.send("program was started")
+
+@bot.command()
+async def start_scene(ctx):
+    with open('open/start.png', 'rb') as f:
+        start = discord.File(f)
+    await ctx.send(file=start)
+    async def MrtAdmin(ctx):
+        with open('Bot view pictures\Mrtos11.png', 'rb') as f:
+            load = discord.File(f)
+        await ctx.send(file=load)
+
+bot.run("Please enter your token")
